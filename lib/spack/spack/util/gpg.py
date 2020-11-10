@@ -145,13 +145,7 @@ class GpgConstants(object):
         if spack.version.Version(match.group(2)) < self.target_version:
             raise SpackGPGError(no_gpgconf_msg)
 
-        # ensure that the gpgconf we found can run "gpgconf --create-socketdir"
-        try:
-            exe('--dry-run', '--create-socketdir')
-        except spack.util.executable.ProcessError:
-            # no dice
-            exe_str = None
-
+        exe_str = None
         return exe_str
 
     @cached_property
